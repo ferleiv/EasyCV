@@ -325,16 +325,11 @@
                             <div class="col-lg-2">
                                 <h5>CONTACT</h5>
                             </div>
-                            <div class="col-lg-4">
-                                <p>
-                                    <t>Email</t><br/> contact@example.com <br/>
-                                </p>
+                            <div class="col-lg-4" id="telefono">
                                 <p>
                                     <t>Adress</t><br/> Some Ave. 987 <br/> Postal 23892 <br/> London, England. <br/>
                                 </p>
-                                <p id="telefono">
 
-                                </p>
                                 <p>
                                     <t>Social Links</t><br/>
                                     <a href="#"><i class="fa fa-dribbble"></i></a>
@@ -423,7 +418,9 @@
                     //$( "<button class='alert'>Alert!</button>" ).appendTo( document.body );
                     $("<h1>"+nam+"</h1>").appendTo(".col-lg-12")
                     $("<h3>Web Designer | "+mail+"</h3>").appendTo(".col-lg-12")
-                    $("<t>Phone</t><br/> +55 8933-2383 <br/>").appendTo(".telefono")
+                    $("<p><t>Phone</t><br/>"+phon+"<br/></p>").appendTo(".col-lg-4")
+                    $("<p><t>Email</t><br/>"+mail+"<br/></p>").appendTo(".col-lg-4")
+
 
                     var href = location.hash.slice(1) +".html";
                     console.log(href)
