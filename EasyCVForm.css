@@ -21,7 +21,7 @@ div+div {
 }
 
 label span {
-    display: inline-block;
+    display: inline;
     width: 130px;
     text-align: right;
 }
