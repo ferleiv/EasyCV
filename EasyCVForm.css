@@ -54,6 +54,9 @@ button {
     margin: 0px 0px 0px 0px;
 }
 
+#form1 label {
+    color:darkgrey;
+}
 label {
   position: relative;
 }
