@@ -74,20 +74,20 @@
                 <span>Join Date:</span>
                 <strong><abbr title="required">*</abbr></strong>
             </label>
-            <input type="date" name="join_date" id="join_date" max="2018-01-01" min="1970-01-01"  autocomplete="on" required><br>
+            <input type="date" name="join_date" id="join_date" max="2018-01-01" min="1950-01-01"  autocomplete="on" required><br>
         </p>
         <p>
             <label for="end_date">
                 <span>Graduate Date:</span>
                 <strong><abbr title="required">*</abbr></strong>
             </label>
-            <input type="date" name="end_date" id="end_date" max="2018-01-01" min="2000-01-02"  autocomplete="on" required><br>
+            <input type="date" name="end_date" id="end_date" max="2050-01-01" min="1950-01-02"  autocomplete="on" required><br>
         </p>
         <p>
-            <label for="end_date">
+            <label for="educationDescription">
                 <span>Description:</span>
             </label>
-            <textarea name="description" rows="10" cols="20"></textarea>
+            <textarea id="educationDescription" name="educationDescription" rows="10" cols="20"></textarea>
         </p>
     </section>
     <section>
@@ -128,7 +128,7 @@
     <div id="headerwrap">
         <div class="container">
             <div class="row centered">
-                <div class="col-lg-12">
+                <div class="col-lg-12" id="header">
 
 
                 </div>
@@ -176,31 +176,11 @@
                 <div class="col-lg-2 col-lg-offset-1">
                     <h5>EDUCATION</h5>
                 </div>
-                <div class="col-lg-6">
-                    <p>
-                        <t>Master of Web Design</t><br/> St. Patrick University <br/>
-                        <i>3 Years Course</i>
-                    </p>
+                <div class="col-lg-6" id="educacion">
+                    <!--Education-->
                 </div>
-                <div class="col-lg-3">
-                    <p>
-                        <sm>GRADUATING IN MAY 2014</sm><br/>
-                        <imp>
-                            <sm>IN PROGRESS</sm>
-                        </imp>
-                    </p>
-                </div>
-
-                <div class="col-lg-6 col-lg-offset-3">
-                    <p>
-                        <t>Degree of Web Developer</t><br/> Hastings University <br/>
-                        <i>2 Years Course</i>
-                    </p>
-                </div>
-                <div class="col-lg-3">
-                    <p>
-                        <sm>JUNE 2012</sm>
-                    </p>
+                <div class="col-lg-3" id="fechas_educacion">
+                    <!--Dates-->
                 </div>
 
             </div>
@@ -491,25 +471,51 @@
             var nam = document.getElementById("name").value;
             var phon = document.getElementById("phone").value;
             var mail = document.getElementById("email").value;
-
+            var title = document.getElementById("titlename").value;
+            var inst = document.getElementById("institution").value;
+            var educationData = document.getElementById("educationDescription").value;
+            
+            var months = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'];
+            var todayDate = new Date()
+            var startDate = new Date(document.getElementById("join_date").value);
+            var startMonth = months[startDate.getMonth()];
+            var startYear = startDate.getFullYear();
+            var finishDate = new Date(document.getElementById("end_date").value);
+            var finishMonth = months[finishDate.getMonth()];
+            var finishYear = finishDate.getFullYear();
+            
             alert("Creating your brand new CV")
 
             //Elimina el form de la pagina principal
             $('#form1').hide()
 
-            //Titulo: nombre de la seccion es col-lg-12
+            //Titulo: nombre de la seccion es header
 
             //Nombre en el titulo
-            $("<h1>"+nam+"</h1>").appendTo(".col-lg-12")
+            $("<h1>"+nam+"</h1>").appendTo("#header")
             //Correo en el titulo
-            $("<h3>Web Designer | "+mail+"</h3>").appendTo(".col-lg-12")
+            $("<h3>Web Designer | "+mail+"</h3>").appendTo("#header")
 
-            //Seccion de Contacto: nombre de la seccion es col-lg-4
+            //Seccion de Contacto: nombre de la seccion es telefono
 
             //Telefono
-            $("<p><t>Phone</t><br/>"+phon+"<br/></p>").appendTo(".col-lg-4")
+            $("<p><t>Phone</t><br/>"+phon+"<br/></p>").appendTo("#telefono")
             //Mail
-            $("<p><t>Email</t><br/>"+mail+"<br/></p>").appendTo(".col-lg-4")
+            $("<p><t>Email</t><br/>"+mail+"<br/></p>").appendTo("#telefono")
+            
+            //Seccion de educacion: nombre de la seccion es educacion
+            $("<p><t>"+title+"</t><br/>"+inst+"<br/></P>").appendTo("#educacion")
+            
+            //Descripción de la educación
+            $("<p><more>"+educationData+"</more><br/></P>").appendTo("#educacion")
+            
+            //Fechas
+            if (finishDate < todayDate)
+            {
+                $("<p><sm>STARTED "+startMonth+" "+startYear+"</sm><br/><sm>FINISHED "+finishMonth+" "+finishYear+"</sm></p>").appendTo("#fechas_educacion")
+            } else {
+                $("<p><sm>STARTED "+startMonth+" "+startYear+"</sm><br/><imp><sm>IN PROGRESS</sm></imp></p>").appendTo("#fechas_educacion")
+            }
 
             //Muestra el curriculum dentro de la pagina
             $("#html11").css('display', 'block')
