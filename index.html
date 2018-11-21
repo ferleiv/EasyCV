@@ -2,6 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="code.jquery.com/jquery-latest.js"></script>
 
     <meta charset="utf-8">
     <title>Kelvin - Bootstrap Resume Template</title>
@@ -53,43 +54,49 @@
             <input type="email" name="email" id="email" autocomplete="on" required>
         </p>
     </section>
-    <section>
-        <h2>Education</h2>
-        <p>
-            <label for="title_name">
-                <span>Title name: </span>
-                <strong><abbr title="required">*</abbr></strong>
-            </label>
-            <input type="text" name="titlename" id="titlename" autocomplete="on" autofocus required>
-        </p>
-        <p>
-            <label for="institution">
-                <span>College/University:</span>
-                <strong><abbr title="required">*</abbr></strong>
-            </label>
-            <input type="text" name="institution" id="institution" autocomplete="on" required>
-        </p>
-        <p>
-            <label for="join_date">
-                <span>Join Date:</span>
-                <strong><abbr title="required">*</abbr></strong>
-            </label>
-            <input type="date" name="join_date" id="join_date" max="2018-01-01" min="1950-01-01"  autocomplete="on" required><br>
-        </p>
-        <p>
-            <label for="end_date">
-                <span>Graduate Date:</span>
-                <strong><abbr title="required">*</abbr></strong>
-            </label>
-            <input type="date" name="end_date" id="end_date" max="2050-01-01" min="1950-01-02"  autocomplete="on" required><br>
-        </p>
-        <p>
-            <label for="educationDescription">
-                <span>Description:</span>
-            </label>
-            <textarea id="educationDescription" name="educationDescription" rows="10" cols="20"></textarea>
-        </p>
-    </section>
+    <div class="duplicate-sections">
+        <div class="form-section">
+            <section>
+                <h2>Education</h2>
+                <p>
+                    <label for="title_name">
+                        <span>Title name: </span>
+                        <strong><abbr title="required">*</abbr></strong>
+                    </label>
+                    <input type="text" name="titlename" id="titlename" autocomplete="on" autofocus required>
+                </p>
+                <p>
+                    <label for="institution">
+                        <span>College/University:</span>
+                        <strong><abbr title="required">*</abbr></strong>
+                    </label>
+                    <input type="text" name="institution" id="institution" autocomplete="on" required>
+                </p>
+                <p>
+                    <label for="join_date">
+                        <span>Join Date:</span>
+                        <strong><abbr title="required">*</abbr></strong>
+                    </label>
+                    <input type="date" name="join_date" id="join_date" max="2018-01-01" min="1950-01-01"  autocomplete="on" required><br>
+                </p>
+                <p>
+                    <label for="end_date">
+                        <span>Graduate Date:</span>
+                        <strong><abbr title="required">*</abbr></strong>
+                    </label>
+                    <input type="date" name="end_date" id="end_date" max="2050-01-01" min="1950-01-02"  autocomplete="on" required><br>
+                </p>
+                <p>
+                    <label for="educationDescription">
+                        <span>Description:</span>
+                    </label>
+                    <textarea id="educationDescription" name="educationDescription" rows="10" cols="20"></textarea>
+                </p>
+                <a href="#" class="remove">Remove Education</a>
+            </section>
+        </div>
+    </div>
+    <a href="#" class="addsection" data-section='0'>Add Education</a>
     <section>
         <p>Required fields are followed by <strong><abbr title="required">*</abbr></strong>.</p>
         <button type="submit">Create</button>
@@ -460,13 +467,13 @@
     </div>
 </div>
 
-<script>
+</body>
 
+<script>
     $(document).ready(function () {
         $('form').submit(function (e) {
             //Evita que la pagina recargue y se pierda el form
             e.preventDefault()
-
             //Toma de datos:
             var nam = document.getElementById("name").value;
             var phon = document.getElementById("phone").value;
@@ -485,7 +492,6 @@
             var finishYear = finishDate.getFullYear();
             
             alert("Creating your brand new CV")
-
             //Elimina el form de la pagina principal
             $('#form1').hide()
 
@@ -497,7 +503,7 @@
             $("<h3>Web Designer | "+mail+"</h3>").appendTo("#header")
 
             //Seccion de Contacto: nombre de la seccion es telefono
-
+            
             //Telefono
             $("<p><t>Phone</t><br/>"+phon+"<br/></p>").appendTo("#telefono")
             //Mail
@@ -519,14 +525,36 @@
 
             //Muestra el curriculum dentro de la pagina
             $("#html11").css('display', 'block')
-
             return false;
         })
     })
 
+    var forms = [];
 
+    $('.duplicate-sections .form-section').each(function(){
+        forms.push($(this).clone());
+    })
+
+    var sectionsCount = 1;
+
+    $('body').on('click', '.addsection', function() {
+        var template = forms[$(this).data('section')];
+        sectionsCount++;
+        var section = template.clone().find(':input').each(function(){
+            var newId = this.id + sectionsCount;
+            $(this).prev().attr('for', newId);
+            this.id = newId;
+        }).end()
+            .appendTo($(this).prev('.duplicate-sections'));
+        return false;
+    });
+
+    $('.duplicate-sections').on('click', '.remove', function() {
+        $(this).closest('.form-section').fadeOut(300, function(){
+            $(this).closest('.form-section').empty();
+        });
+        return false;
+    });
 </script>
-
-</body>
 
 </html>
