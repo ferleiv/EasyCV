@@ -553,6 +553,7 @@
     });
 
     $('.duplicate-sections').on('click', '.remove', function() {
+        sectionsCount--;
         $(this).closest('.form-section').fadeOut(300, function(){
             $(this).closest('.form-section').empty();
         });
