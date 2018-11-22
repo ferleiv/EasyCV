@@ -178,17 +178,17 @@
     <section id="resume" name="resume">
         <!--EDUCATION DESCRIPTION -->
         <div class="container desc">
-            <div class="row">
+            <div class="row" id="educacion">
 
                 <div class="col-lg-2 col-lg-offset-1">
                     <h5>EDUCATION</h5>
                 </div>
-                <div class="col-lg-6" id="educacion">
-                    <!--Education-->
-                </div>
-                <div class="col-lg-3" id="fechas_educacion">
-                    <!--Dates-->
-                </div>
+                <!--<div class="col-lg-6" id="educacion">
+                    <!-\-Education-\->
+                </div>-->
+                <!--<div class="col-lg-3" id="fechas_educacion">
+                    <!-\-Dates-\->
+                </div>-->
 
             </div>
             <!--/.row -->
@@ -470,6 +470,8 @@
 </body>
 
 <script>
+    var sectionsCount = 1;
+    
     $(document).ready(function () {
         $('form').submit(function (e) {
             //Evita que la pagina recargue y se pierda el form
@@ -478,18 +480,9 @@
             var nam = document.getElementById("name").value;
             var phon = document.getElementById("phone").value;
             var mail = document.getElementById("email").value;
-            var title = document.getElementById("titlename").value;
-            var inst = document.getElementById("institution").value;
-            var educationData = document.getElementById("educationDescription").value;
             
             var months = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'];
             var todayDate = new Date()
-            var startDate = new Date(document.getElementById("join_date").value);
-            var startMonth = months[startDate.getMonth()];
-            var startYear = startDate.getFullYear();
-            var finishDate = new Date(document.getElementById("end_date").value);
-            var finishMonth = months[finishDate.getMonth()];
-            var finishYear = finishDate.getFullYear();
             
             alert("Creating your brand new CV")
             //Elimina el form de la pagina principal
@@ -509,18 +502,30 @@
             //Mail
             $("<p><t>Email</t><br/>"+mail+"<br/></p>").appendTo("#telefono")
             
-            //Seccion de educacion: nombre de la seccion es educacion
-            $("<p><t>"+title+"</t><br/>"+inst+"<br/></P>").appendTo("#educacion")
-            
-            //Descripción de la educación
-            $("<p><more>"+educationData+"</more><br/></P>").appendTo("#educacion")
-            
-            //Fechas
-            if (finishDate < todayDate)
-            {
-                $("<p><sm>STARTED "+startMonth+" "+startYear+"</sm><br/><sm>FINISHED "+finishMonth+" "+finishYear+"</sm></p>").appendTo("#fechas_educacion")
-            } else {
-                $("<p><sm>STARTED "+startMonth+" "+startYear+"</sm><br/><imp><sm>IN PROGRESS</sm></imp></p>").appendTo("#fechas_educacion")
+            for (i = 0; i < sectionsCount; i++){
+                var title = document.getElementsByName("titlename")[i].value;
+                var inst = document.getElementsByName("institution")[i].value;
+                var educationData = document.getElementsByName("educationDescription")[i].value;
+                var startDate = new Date(document.getElementsByName("join_date")[i].value);
+                var startMonth = months[startDate.getMonth()];
+                var startYear = startDate.getFullYear();
+                var finishDate = new Date(document.getElementsByName("end_date")[i].value);
+                var finishMonth = months[finishDate.getMonth()];
+                var finishYear = finishDate.getFullYear();
+                //Seccion de educacion: nombre de la seccion es educacion
+                if (i > 0){
+                    $("<div class=\"col-lg-6 col-lg-offset-3\"><p><t>"+title+"</t><br/>"+inst+"<br/></p><p><more>"+educationData+"</more><br/></p></div>").appendTo("#educacion")
+                } else {
+                    $("<div class=\"col-lg-6\"><p><t>"+title+"</t><br/>"+inst+"<br/></p><p><more>"+educationData+"</more><br/></p></div>").appendTo("#educacion")
+                }
+                
+                //Fechas
+                if (finishDate < todayDate)
+                {
+                    $("<div class=\"col-lg-3\"><p><sm>STARTED "+startMonth+" "+startYear+"</sm><br/><sm>FINISHED "+finishMonth+" "+finishYear+"</sm></p></div>").appendTo("#educacion")
+                } else {
+                    $("<div class=\"col-lg-3\"><p><sm>STARTED "+startMonth+" "+startYear+"</sm><br/><imp><sm>IN PROGRESS</sm></imp></p></div>").appendTo("#educacion")
+                }
             }
 
             //Muestra el curriculum dentro de la pagina
@@ -534,8 +539,6 @@
     $('.duplicate-sections .form-section').each(function(){
         forms.push($(this).clone());
     })
-
-    var sectionsCount = 1;
 
     $('body').on('click', '.addsection', function() {
         var template = forms[$(this).data('section')];
