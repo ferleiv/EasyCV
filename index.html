@@ -98,6 +98,100 @@
     </div>
     <a href="#" class="addsection" data-section='0'>Add Education</a>
     <section>
+        <h2>Languages</h2>
+        <div class="lang">
+            <div class="languages">
+                <div class="languages-section">
+                    <select id="lan-selector">
+                        <option value="Afrikanns">Afrikanns</option>
+                        <option value="Albanian">Albanian</option>
+                        <option value="Arabic">Arabic</option>
+                        <option value="Armenian">Armenian</option>
+                        <option value="Basque">Basque</option>
+                        <option value="Bengali">Bengali</option>
+                        <option value="Bulgarian">Bulgarian</option>
+                        <option value="Catalan">Catalan</option>
+                        <option value="Cambodian">Cambodian</option>
+                        <option value="Chinese (Mandarin)">Chinese (Mandarin)</option>
+                        <option value="Croation">Croation</option>
+                        <option value="Czech">Czech</option>
+                        <option value="Danish">Danish</option>
+                        <option value="Dutch">Dutch</option>
+                        <option value="English">English</option>
+                        <option value="Estonian">Estonian</option>
+                        <option value="Fiji">Fiji</option>
+                        <option value="Finnish">Finnish</option>
+                        <option value="French">French</option>
+                        <option value="Georgian">Georgian</option>
+                        <option value="German">German</option>
+                        <option value="Greek">Greek</option>
+                        <option value="Gujarati">Gujarati</option>
+                        <option value="Hebrew">Hebrew</option>
+                        <option value="Hindi">Hindi</option>
+                        <option value="Hungarian">Hungarian</option>
+                        <option value="Icelandic">Icelandic</option>
+                        <option value="Indonesian">Indonesian</option>
+                        <option value="Irish">Irish</option>
+                        <option value="Italian">Italian</option>
+                        <option value="Japanese">Japanese</option>
+                        <option value="Javanese">Javanese</option>
+                        <option value="Korean">Korean</option>
+                        <option value="Latin">Latin</option>
+                        <option value="Latvian">Latvian</option>
+                        <option value="Lithuanian">Lithuanian</option>
+                        <option value="Macedonian">Macedonian</option>
+                        <option value="Malay">Malay</option>
+                        <option value="Malayalam">Malayalam</option>
+                        <option value="Maltese">Maltese</option>
+                        <option value="Maori">Maori</option>
+                        <option value="Marathi">Marathi</option>
+                        <option value="Mongolian">Mongolian</option>
+                        <option value="Nepali">Nepali</option>
+                        <option value="Norwegian">Norwegian</option>
+                        <option value="Persian">Persian</option>
+                        <option value="Polish">Polish</option>
+                        <option value="Portuguese">Portuguese</option>
+                        <option value="Punjabi">Punjabi</option>
+                        <option value="Quechua">Quechua</option>
+                        <option value="Romanian">Romanian</option>
+                        <option value="Russian">Russian</option>
+                        <option value="Samoan">Samoan</option>
+                        <option value="Serbian">Serbian</option>
+                        <option value="Slovak">Slovak</option>
+                        <option value="Slovenian">Slovenian</option>
+                        <option value="Spanish">Spanish</option>
+                        <option value="Swahili">Swahili</option>
+                        <option value="Swedish ">Swedish </option>
+                        <option value="Tamil">Tamil</option>
+                        <option value="Tatar">Tatar</option>
+                        <option value="Telugu">Telugu</option>
+                        <option value="Thai">Thai</option>
+                        <option value="Tibetan">Tibetan</option>
+                        <option value="Tonga">Tonga</option>
+                        <option value="Turkish">Turkish</option>
+                        <option value="Ukranian">Ukranian</option>
+                        <option value="Urdu">Urdu</option>
+                        <option value="Uzbek">Uzbek</option>
+                        <option value="Vietnamese">Vietnamese</option>
+                        <option value="Welsh">Welsh</option>
+                        <option value="Xhosa">Xhosa</option>
+                    </select>
+
+                    <select id="level-selector">
+                        <option data-placeholder="true" disabled="disabled" selected="selected">Choose your level...</option>
+                        <option value="1">Beginner</option>
+                        <option value="2">Intermediate</option>
+                        <option value="3">Advanced</option>
+                        <option value="4">Proficient</option>
+                    </select>
+
+                    <input type="button" class="remove-lang" value="-"/>
+                </div>
+            </div>
+            <input type="button" class="add-lang" value="+" onclick="increaseBtnOnclick()" data-section='0'/>
+        </div>
+    </section>
+    <section>
         <p>Required fields are followed by <strong><abbr title="required">*</abbr></strong>.</p>
         <button type="submit">Create</button>
         <button type="reset">Reset</button>
@@ -556,6 +650,33 @@
         sectionsCount--;
         $(this).closest('.form-section').fadeOut(300, function(){
             $(this).closest('.form-section').empty();
+        });
+        return false;
+    });
+
+    var langCount = 1;
+    var langArray = [];
+
+    $('.languages .languages-section').each(function(){
+        langArray.push($(this).clone());
+    })
+
+    $('body').on('click', '.add-lang', function() {
+        var template = langArray[$(this).data('section')];
+        langCount++;
+        var section = template.clone().find(':input').each(function(){
+            var newId = this.id + langCount;
+            $(this).prev().attr('for', newId);
+            this.id = newId;
+        }).end()
+            .appendTo($(this).prev('.languages'));
+        return false;
+    });
+
+    $('.languages').on('click', '.remove-lang', function() {
+        langCount--;
+        $(this).closest('.languages-section').fadeOut(300, function(){
+            $(this).closest('.languages-section').empty();
         });
         return false;
     });
