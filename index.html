@@ -98,7 +98,7 @@
     </div>
     <a href="#" class="addsection" data-section='0'>Add Education</a>
 
-    <div class="duplicate-sections">
+    <div class="jobs">
         <div class="form-section">
             <section>
                 <h2>Working Experience</h2>
@@ -121,14 +121,14 @@
                         <span>Start Date:</span>
                         <strong><abbr title="required">*</abbr></strong>
                     </label>
-                    <input type="date" name="start_date" id="start_date" max="2018-01-01" min="1950-01-01"  autocomplete="on" required><br>
+                    <input type="date" name="job_start_date" id="job_start_date" max="2018-01-01" min="1950-01-01"  autocomplete="on" required><br>
                 </p>
                 <p>
                     <label for="finish_date">
                         <span>Finish Date:</span>
                         <strong><abbr title="required">*</abbr></strong>
                     </label>
-                    <input type="date" name="finish_date" id="finish_date" max="2050-01-01" min="1950-01-02"  autocomplete="on"><br>
+                    <input type="date" name="job_finish_date" id="job_finish_date" max="2050-01-01" min="1950-01-02"  autocomplete="on"><br>
                 </p>
                 <p>
                     <label for="workingExpDescription">
@@ -140,7 +140,7 @@
             </section>
         </div>
     </div>
-    <a href="#" class="addsection" data-section='0'>Add Working Experience</a>
+    <a href="#" class="addjob" data-section='0'>Add Working Experience</a>
 
     <section>
         <h2>Languages</h2>
@@ -340,38 +340,25 @@
 
     <!--WORK DESCRIPTION -->
     <div class="container desc">
-        <div class="row">
+        <div class="row" id="trabajos">
 
             <div class="col-lg-2 col-lg-offset-1">
                 <h5>WORK</h5>
             </div>
-            <div class="col-lg-6">
+            <!--<div class="col-lg-6">
                 <p>
                     <t>Front-end Developer</t><br/> Example Corp. <br/>
                 </p>
                 <p>
                     <more>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</more>
                 </p>
-            </div>
-            <div class="col-lg-3">
+            </div>-->
+            <!--<div class="col-lg-3">
                 <p>
                     <sm>AUGUST 2012 - CURRENT</sm>
                 </p>
-            </div>
+            </div>-->
 
-            <div class="col-lg-6 col-lg-offset-3">
-                <p>
-                    <t>Web Designer - Intern</t><br/> Onassis Ltd. <br/>
-                </p>
-                <p>
-                    <more>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</more>
-                </p>
-            </div>
-            <div class="col-lg-3">
-                <p>
-                    <sm>JUNE 2010 - JULY 2012</sm>
-                </p>
-            </div>
         </div>
         <!--/.row -->
         <br>
@@ -610,6 +597,7 @@
 
 <script>
     var sectionsCount = 1;
+    var jobCount = 1;
     
     $(document).ready(function () {
         $('form').submit(function (e) {
@@ -641,6 +629,7 @@
             //Mail
             $("<p><t>Email</t><br/>"+mail+"<br/></p>").appendTo("#telefono")
             
+            //Educación
             for (i = 0; i < sectionsCount; i++){
                 var title = document.getElementsByName("titlename")[i].value;
                 var inst = document.getElementsByName("institution")[i].value;
@@ -667,6 +656,33 @@
                 }
             }
 
+            //Trabajos
+            for (i = 0; i < jobCount; i++){
+                var title = document.getElementsByName("job_title")[i].value;
+                var company = document.getElementsByName("company_name")[i].value;
+                var jobData = document.getElementsByName("workingExpDescription")[i].value;
+                var startDate = new Date(document.getElementsByName("job_start_date")[i].value);
+                var startMonth = months[startDate.getMonth()];
+                var startYear = startDate.getFullYear();
+                var finishDate = new Date(document.getElementsByName("job_finish_date")[i].value);
+                var finishMonth = months[finishDate.getMonth()];
+                var finishYear = finishDate.getFullYear();
+                //Seccion de experiencia laboral: nombre de la seccion es trabajos
+                if (i > 0){
+                    $("<div class=\"col-lg-6 col-lg-offset-3\"><p><t>"+title+"</t><br/>"+company+"<br/></p><p><more>"+jobData+"</more><br/></p></div>").appendTo("#trabajos")
+                } else {
+                    $("<div class=\"col-lg-6\"><p><t>"+title+"</t><br/>"+company+"<br/></p><p><more>"+jobData+"</more><br/></p></div>").appendTo("#trabajos")
+                }
+                
+                //Fechas
+                if (finishDate < todayDate)
+                {
+                    $("<div class=\"col-lg-3\"><p><sm>STARTED "+startMonth+" "+startYear+"</sm><br/><sm>FINISHED "+finishMonth+" "+finishYear+"</sm></p></div>").appendTo("#trabajos")
+                } else {
+                    $("<div class=\"col-lg-3\"><p><sm>STARTED "+startMonth+" "+startYear+"</sm><br/><imp><sm>CURRENT</sm></imp></p></div>").appendTo("#trabajos")
+                }
+            }
+            
             //Muestra el curriculum dentro de la pagina
             $("#html11").css('display', 'block')
             return false;
@@ -699,6 +715,32 @@
         return false;
     });
 
+    var jobs = [];
+
+    $('.jobs .form-section').each(function(){
+        jobs.push($(this).clone());
+    })
+
+    $('body').on('click', '.addjob', function() {
+        var template = jobs[$(this).data('section')];
+        jobCount++;
+        var section = template.clone().find(':input').each(function(){
+            var newId = this.id + jobCount;
+            $(this).prev().attr('for', newId);
+            this.id = newId;
+        }).end()
+            .appendTo($(this).prev('.jobs'));
+        return false;
+    });
+
+    $('.jobs').on('click', '.remove', function() {
+        jobCount--;
+        $(this).closest('.form-section').fadeOut(300, function(){
+            $(this).closest('.form-section').empty();
+        });
+        return false;
+    });
+    
     var langCount = 1;
     var langArray = [];
 
