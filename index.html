@@ -236,6 +236,37 @@
             <input type="button" class="add-lang" value="+" onclick="increaseBtnOnclick()" data-section='0'/>
         </div>
     </section>
+    
+    <div class="skills">
+        <div class="form-section">
+            <section>
+                <h2>Tech skills</h2>
+                <p>
+                    <label for="skill_name">
+                        <span>Skill name: </span>
+                        <strong><abbr title="required">*</abbr></strong>
+                    </label>
+                    <input type="text" name="skill_name" id="skill_name" autocomplete="on" autofocus required>
+                </p>
+                <p>
+                    <label for="skill_selector">
+                        <span>Skill level: </span>
+                        <strong><abbr title="required">*</abbr></strong>
+                    </label>
+                    <select id="skill-selector">
+                        <option data-placeholder="true" disabled="disabled" selected="selected">Choose your level...</option>
+                        <option value="1">Beginner</option>
+                        <option value="2">Intermediate</option>
+                        <option value="3">Advanced</option>
+                        <option value="4">Proficient</option>
+                    </select>
+                </p>
+                <a href="#" class="removeskill">Remove Skill</a>
+            </section>
+        </div>
+    </div>
+    <a href="#" class="addskill" data-section='0'>Add Skill</a>
+    
     <section>
         <p>Required fields are followed by <strong><abbr title="required">*</abbr></strong>.</p>
         <button type="submit">Create</button>
@@ -767,6 +798,34 @@
         });
         return false;
     });
+    
+    var skills = [];
+    var skillscount = 1;
+    
+    $('.skills .form-section').each(function(){
+        skills.push($(this).clone());
+    })
+    
+    $('body').on('click', '.addskill', function() {
+        var template = skills[$(this).data('section')];
+        skillscount++;
+        var section = template.clone().find(':input').each(function(){
+            var newId = this.id + skillscount;
+            $(this).prev().attr('for', newId);
+            this.id = newId;
+        }).end()
+            .appendTo($(this).prev('.skills'));
+        return false;
+    });
+    
+    $('.skills').on('click', '.removeskill', function() {
+        skillscount--;
+        $(this).closest('.form-section').fadeOut(300, function(){
+            $(this).closest('.form-section').empty();
+        });
+        return false;
+    });
+    
 </script>
 
 </html>
