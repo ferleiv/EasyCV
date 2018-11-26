@@ -266,6 +266,35 @@
         </div>
     </div>
     <a href="#" class="addskill" data-section='0'>Add Skill</a>
+
+    <div class="references">
+        <div class="references-section">
+            <section>
+                <h2>References</h2>
+                <p>
+                    <label for="name">
+                        <span>Name: </span>
+                    </label>
+                    <input type="text" name="name" id="ref-name" autocomplete="on" autofocus>
+                </p>
+                <p>
+                    <label for="phone">
+                        <span>Phone: </span>
+                    </label>
+                    <input type="text" name="phone" id="ref-phone" autocomplete="on">
+                </p>
+                <p>
+                    <label for="email">
+                        <span>E-mail: </span>
+                    </label>
+                    <input type="email" name="email" id="ref-email" autocomplete="on">
+                </p>
+
+                <a href="#" class="remove-ref">Remove Reference</a>
+            </section>
+        </div>
+    </div>
+    <a href="#" class="add-ref" data-section='0'>Add Reference</a>
     
     <section>
         <p>Required fields are followed by <strong><abbr title="required">*</abbr></strong>.</p>
@@ -822,6 +851,33 @@
         skillscount--;
         $(this).closest('.form-section').fadeOut(300, function(){
             $(this).closest('.form-section').empty();
+        });
+        return false;
+    });
+
+    var refCount = 1;
+    var refArray = [];
+
+    $('.references .references-section').each(function(){
+        refArray.push($(this).clone());
+    })
+
+    $('body').on('click', '.add-ref', function() {
+        var template = refArray[$(this).data('section')];
+        refCount++;
+        var section = template.clone().find(':input').each(function(){
+            var newId = this.id + refCount;
+            $(this).prev().attr('for', newId);
+            this.id = newId;
+        }).end()
+            .appendTo($(this).prev('.references'));
+        return false;
+    });
+
+    $('.references').on('click', '.remove-ref', function() {
+        refCount--;
+        $(this).closest('.references-section').fadeOut(300, function(){
+            $(this).closest('.references-section').empty();
         });
         return false;
     });
