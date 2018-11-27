@@ -26,6 +26,7 @@
     <!-- Main Stylesheet File -->
     <link href="css/style.css" rel="stylesheet">
     <link href="EasyCVForm.css" rel="stylesheet">
+    <link href="progress.css" rel="stylesheet">
 </head>
 <body>
 <form name="form" method="post" id="form1">
@@ -295,7 +296,7 @@
         </div>
     </div>
     <a href="#" class="add-ref" data-section='0'>Add Reference</a>
-    
+
     <section>
         <p>Required fields are followed by <strong><abbr title="required">*</abbr></strong>.</p>
         <button type="submit">Create</button>
@@ -465,6 +466,34 @@
     <!--/.container -->
 
 
+    <!--LANGUAGES DESCRIPTION -->
+    <div id="langswrap">
+        <div class="container">
+            <div class="row" id="lenguajes">
+                <div class="col-lg-offset-1">
+                    <h5>LANGUAGES</h5>
+                </div>
+                <div class="col-lg-offset-4">
+                    <p style="width:80%" data-value="80">English</p>
+                    <progress max="100" value="80" class="striped">
+                        <!-- Browsers that support HTML5 progress element will ignore the html inside `progress` element. Whereas older browsers will ignore the `progress` element and instead render the html inside it. -->
+                        <div class="progress-bar">
+                            <span style="width: 80%">80%</span>
+                        </div>
+                    </progress>
+                    <p style="width:35%" data-value="35">SPANISH</p>
+                    <progress max="100" value="35" class="striped">
+                        <!-- Browsers that support HTML5 progress element will ignore the html inside `progress` element. Whereas older browsers will ignore the `progress` element and instead render the html inside it. -->
+                        <div class="progress-bar">
+                            <span style="width: 35%">35%</span>
+                        </div>
+                    </progress>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+
     <!--SKILLS DESCRIPTION -->
     <div id="skillswrap">
         <div class="container">
@@ -483,7 +512,7 @@
                     <br>
                 </div>
                 <div class="col-lg-3 centered">
-                    <canvas id="wordpress" height="130" width="130"></canvas>
+                    <canvas id="wordpress" height="130" width="130" va></canvas>
                     <p>Wordpress</p>
                     <br>
                 </div>
@@ -883,5 +912,15 @@
     });
     
 </script>
+
+<!-- JavaScript Libraries -->
+<script src="lib/jquery/jquery.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="lib/php-mail-form/validate.js"></script>
+<script src="lib/chart/chart.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+
+<!-- Template Main Javascript File -->
+<script src="js/main.js"></script>
 
 </html>

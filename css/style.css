@@ -157,23 +157,24 @@ SECTION WRAPS
 
 /* Header Wrap */
 
+
 #headerwrap {
-  background: url(../img/header-bg.jpg) no-repeat center top;
-  margin-top: 60px;
-  padding-top: 140px;
-  text-align: center;
-  background-attachment: relative;
-  background-position: center center;
-  min-height: 500px;
-  width: 100%;
-  -webkit-background-size: 100%;
-  -moz-background-size: 100%;
-  -o-background-size: 100%;
-  background-size: 100%;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+    background: url(../img/header-bg.jpg) no-repeat center top;
+    margin-top: 60px;
+    padding-top: 140px;
+    text-align: center;
+    background-attachment: relative;
+    background-position: center center;
+    min-height: 500px;
+    width: 100%;
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 #headerwrap h1 {
@@ -204,6 +205,17 @@ SECTION WRAPS
   font-size: 20px;
   padding-right: 8px;
   vertical-align: middle;
+}
+
+#langswrap {
+    background: #2c3e50;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    color: white;
+}
+
+#langswrap h5, p {
+    color: #ffffff;
 }
 
 #skillswrap {
