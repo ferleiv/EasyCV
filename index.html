@@ -687,7 +687,7 @@
 <script>
     var sectionsCount = 1;
     var jobCount = 1;
-    
+
     $(document).ready(function () {
         $('form').submit(function (e) {
             //Evita que la pagina recargue y se pierda el form
@@ -696,10 +696,10 @@
             var nam = document.getElementById("name").value;
             var phon = document.getElementById("phone").value;
             var mail = document.getElementById("email").value;
-            
+
             var months = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'];
             var todayDate = new Date()
-            
+
             alert("Creating your brand new CV")
             //Elimina el form de la pagina principal
             $('#form1').hide()
@@ -712,12 +712,12 @@
             $("<h3>Web Designer | "+mail+"</h3>").appendTo("#header")
 
             //Seccion de Contacto: nombre de la seccion es telefono
-            
+
             //Telefono
             $("<p><t>Phone</t><br/>"+phon+"<br/></p>").appendTo("#telefono")
             //Mail
             $("<p><t>Email</t><br/>"+mail+"<br/></p>").appendTo("#telefono")
-            
+
             //Educación
             for (i = 0; i < sectionsCount; i++){
                 var title = document.getElementsByName("titlename")[i].value;
@@ -735,7 +735,7 @@
                 } else {
                     $("<div class=\"col-lg-6\"><p><t>"+title+"</t><br/>"+inst+"<br/></p><p><more>"+educationData+"</more><br/></p></div>").appendTo("#educacion")
                 }
-                
+
                 //Fechas
                 if (finishDate < todayDate)
                 {
@@ -762,7 +762,7 @@
                 } else {
                     $("<div class=\"col-lg-6\"><p><t>"+title+"</t><br/>"+company+"<br/></p><p><more>"+jobData+"</more><br/></p></div>").appendTo("#trabajos")
                 }
-                
+
                 //Fechas
                 if (finishDate < todayDate)
                 {
@@ -776,7 +776,6 @@
             for (i = 0; i < skillscount; i++) {
                 var skill = document.getElementById("skill_name")[i].value;
                 var skillLevel = document.getElementById("skill_selector")[i].value;
-
                 $("<div class=\"col-lg-3 centered\"><canvas id=\"javascript\" height=\"130\" width=\"130\"></canvas><p>"+skill+"</p><br></div>").appendTo("#skillswrap")
             }
             
