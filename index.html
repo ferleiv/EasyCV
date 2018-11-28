@@ -763,10 +763,8 @@
                 /*var language = document.getElementsById("lan-selector")[i].value;*/
                 var e = document.getElementsByName("lan-selector")[i];
                 var language = e.options[e.selectedIndex].value;
-                /*var f = document.getElementsByName("level-selector")[i];
-                var level = f.options[e.selectedIndex].value;*/
-
-                //Seccion de proeficiencia en lenguajes: nombre de la seccion es lenguajes
+                var f = document.getElementsByName("level-selector")[i];
+                var prof_level = (f.options[f.selectedIndex].value)*25; //Este es el valor a remplazar por todos los 80 abajo
                 $("<p style='width: 80%' data-value='80'>"+language+"</p><progress max='100' value='80' class='striped'><div class='progress-bar'><span style='width: 80%'>80%</span></div>></progress>").appendTo("#lenguajes")
             }
             //Tech Skills
