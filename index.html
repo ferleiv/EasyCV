@@ -259,7 +259,7 @@
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
-                        <option value="4">5</option>
+                        <option value="5">5</option>
                     </select>
                 </p>
                 <a href="#" class="removeskill">Remove Skill</a>
@@ -764,7 +764,7 @@
             for (i = 0; i < skillscount; i++) {
                 var skill = document.getElementsByName("skill_name")[i].value;
                 var skillLevel = document.getElementsByName("skill-selector")[i];
-                var level = (skillLevel.options[skillLevel.selectedIndex].value)*25;
+                var level = (skillLevel.options[skillLevel.selectedIndex].value)*20;
                 $("<div class=\"col-lg-3 centered\"><canvas id=\"" + skill + "\" height=\"130\" width=\"130\"></canvas><p>"+skill+"</p><br></div>").appendTo("#skillswrap .row")
                 var doughnutData = [{
                         value: level,
