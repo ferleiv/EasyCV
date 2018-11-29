@@ -228,7 +228,6 @@
                         <option value="1">Beginner</option>
                         <option value="2">Intermediate</option>
                         <option value="3">Advanced</option>
-                        <option value="4">Proficient</option>
                     </select>
 
                     <input type="button" class="remove-lang" value="-"/>
@@ -312,7 +311,6 @@
                 <div class="row">
                     <div class="dropdown">
                         <ul id="nav" class="nav">
-                            <li class="menu-item"><a class="smothscroll" href="#about" title="About"><i class="fa fa-user"></i></a></li>
                             <li class="menu-item"><a class="smothscroll" href="#resume" title="Resume"><i class="fa fa-file-text-o"></i></a></li>
                             <li class="menu-item"><a class="smothscroll" href="#work" title="Works"><i class="fa fa-briefcase"></i></a></li>
                             <li class="menu-item"><a class="smothscroll" href="#contact" title="Contact"><i class="fa fa-envelope"></i></a></li>
@@ -349,7 +347,7 @@
     <!--/.#headerwrap -->
 
 
-    <section id="about" name="about">
+    <!--<section id="about" name="about">
         <div id="intro">
             <div class="container">
                 <div class="row">
@@ -368,12 +366,9 @@
                     </div>
 
                 </div>
-                <!--/.row -->
             </div>
-            <!--/.container -->
         </div>
-        <!--/ #intro -->
-    </section>
+    </section> -->
 
 
     <section id="resume" name="resume">
@@ -429,7 +424,7 @@
     <!--/.container -->
 
 
-    <!--AWARDS DESCRIPTION -->
+    <!-- 
     <div class="container desc">
         <div class="row">
             <div class="col-lg-2 col-lg-offset-1">
@@ -461,10 +456,8 @@
             </div>
 
         </div>
-        <!--/.row -->
         <br>
-    </div>
-    <!--/.container -->
+    </div> -->
 
 
     <!--LANGUAGES DESCRIPTION -->
@@ -542,8 +535,7 @@
 
 
 
-    <section id="work" name="work">
-        <!--PORTFOLIO DESCRIPTION -->
+    <!--<section id="work" name="work">
         <div class="container desc">
             <div class="row">
                 <div class="col-lg-2 col-lg-offset-1">
@@ -586,15 +578,14 @@
                 </div>
 
             </div>
-            <!--/.row -->
             <br>
             <br>
         </div>
-        <!--/.container -->
-    </section>
+    </section> -->
 
     <section id="contact" name="contact">
         <!--FOOTER DESCRIPTION -->
+         
         <div id="footwrap">
             <div class="container">
                 <div class="row">
@@ -603,9 +594,9 @@
                         <h5>CONTACT</h5>
                     </div>
                     <div class="col-lg-4" id="telefono">
-                        <p>
+                        <!-- <p>
                             <t>Adress</t><br/> Some Ave. 987 <br/> Postal 23892 <br/> London, England. <br/>
-                        </p>
+                        </p> 
 
                         <p>
                             <t>Social Links</t><br/>
@@ -614,9 +605,9 @@
                             <a href="#"><i class="fa fa-facebook"></i></a>
                             <a href="#"><i class="fa fa-linkedin"></i></a>
                             <a href="#"><i class="fa fa-apple"></i></a>
-                        </p>
+                        </p> -->
                     </div>
-                    <div class="col-lg-6">
+                    <!-- <div class="col-lg-6">
                         <p>
                             <sm>CONTACT FORM</sm>
                         </p>
@@ -654,7 +645,7 @@
 
                         </form>
 
-                    </div>
+                    </div> -->
                 </div>
                 <!--/.row -->
             </div>
@@ -765,7 +756,8 @@
                 var e = document.getElementsByName("lan-selector")[i];
                 var language = e.options[e.selectedIndex].value;
                 var f = document.getElementsByName("level-selector")[i];
-                var prof_level = (f.options[f.selectedIndex].value)*25; //Este es el valor a remplazar por todos los 80 abajo
+                var prof_level = (f.options[f.selectedIndex].value)*(100/3) //Este es el valor a remplazar por todos los 80 abajo
+                prof_level = prof_level.toFixed(0);
                 $("<p style='width: 80%' data-value='" + prof_level + "'>"+language+"</p><progress max='100' value='" + prof_level + "' class='striped'><div class='progress-bar'><span style='width: 80%'>" + prof_level + "%</span></div>></progress>").appendTo("#lenguajes")
             }
             //Tech Skills
