@@ -254,7 +254,7 @@
                         <span>Skill level: </span>
                         <strong><abbr title="required">*</abbr></strong>
                     </label>
-                    <select id="skill-selector">
+                    <select name="skill-selector">
                         <option data-placeholder="true" disabled="disabled" selected="selected">Choose your level...</option>
                         <option value="1">Beginner</option>
                         <option value="2">Intermediate</option>
@@ -499,7 +499,7 @@
                 <div class="col-lg-2 col-lg-offset-1">
                     <h5>SKILLS</h5>
                 </div>
-                <div class="col-lg-3 centered">
+                <!--div class="col-lg-3 centered">
                     <canvas id="javascript" height="130" width="130"></canvas>
                     <p>Javascript</p>
                     <br>
@@ -529,7 +529,7 @@
                     <canvas id="illustrator" height="130" width="130"></canvas>
                     <p>Illustrator</p>
                     <br>
-                </div>
+                </div-->
 
             </div>
             <!--/.row -->
@@ -765,14 +765,25 @@
                 var language = e.options[e.selectedIndex].value;
                 var f = document.getElementsByName("level-selector")[i];
                 var prof_level = (f.options[f.selectedIndex].value)*25; //Este es el valor a remplazar por todos los 80 abajo
-                $("<p style='width: 80%' data-value='80'>"+language+"</p><progress max='100' value='80' class='striped'><div class='progress-bar'><span style='width: 80%'>80%</span></div>></progress>").appendTo("#lenguajes")
+                $("<p style='width: 80%' data-value='" + prof_level + "'>"+language+"</p><progress max='100' value='" + prof_level + "' class='striped'><div class='progress-bar'><span style='width: 80%'>" + prof_level + "%</span></div>></progress>").appendTo("#lenguajes")
             }
             //Tech Skills
-            /*for (i = 0; i < skillscount; i++) {
-                var skill = document.getElementById("skill_name")[i].value;
-                var skillLevel = document.getElementById("skill_selector")[i].value;
-                $("<div class=\"col-lg-3 centered\"><canvas id=\"javascript\" height=\"130\" width=\"130\"></canvas><p>"+skill+"</p><br></div>").appendTo("#skillswrap")
-            }*/
+            for (i = 0; i < skillscount; i++) {
+                var skill = document.getElementsByName("skill_name")[i].value;
+                var skillLevel = document.getElementsByName("skill-selector")[i];
+                var level = (skillLevel.options[skillLevel.selectedIndex].value)*25;
+                $("<div class=\"col-lg-3 centered\"><canvas id=\"" + skill + "\" height=\"130\" width=\"130\"></canvas><p>"+skill+"</p><br></div>").appendTo("#skillswrap .row")
+                var doughnutData = [{
+                        value: level,
+                        color: "#1abc9c"
+                    },
+                    {
+                        value: 100 - level,
+                        color: "#ecf0f1"
+                    }
+                ];
+                var myDoughnut = new Chart(document.getElementById(skill).getContext("2d")).Doughnut(doughnutData);
+            }
 
             //Muestra el curriculum dentro de la pagina
             $("#html11").css('display', 'block')
