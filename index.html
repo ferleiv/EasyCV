@@ -78,14 +78,14 @@
                         <span>Join Date:</span>
                         <strong><abbr title="required">*</abbr></strong>
                     </label>
-                    <input type="date" name="join_date" id="join_date" max="2018-01-01" min="1950-01-01"  autocomplete="on" required><br>
+                    <input type="date" name="join_date" id="join_date" min="1950-01-01" onchange="checkBeginDate('join_date', 'end_date')" autocomplete="on" required><br>
                 </p>
                 <p>
                     <label for="end_date">
                         <span>Graduate Date:</span>
                         <strong><abbr title="required">*</abbr></strong>
                     </label>
-                    <input type="date" name="end_date" id="end_date" max="2050-01-01" min="1950-01-02"  autocomplete="on" required><br>
+                    <input type="date" name="end_date" id="end_date" min="1950-01-02" onchange="checkEndDate('end_date', 'join_date')" autocomplete="on" required><br>
                 </p>
                 <p>
                     <label for="educationDescription">
@@ -122,14 +122,14 @@
                         <span>Start Date:</span>
                         <strong><abbr title="required">*</abbr></strong>
                     </label>
-                    <input type="date" name="job_start_date" id="job_start_date" max="2018-01-01" min="1950-01-01"  autocomplete="on" required><br>
+                    <input type="date" name="job_start_date" id="job_start_date" min="1950-01-01" onchange="checkBeginDate('job_start_date', 'job_finish_date')" autocomplete="on" required><br>
                 </p>
                 <p>
                     <label for="finish_date">
                         <span>Finish Date:</span>
                         <strong><abbr title="required">*</abbr></strong>
                     </label>
-                    <input type="date" name="job_finish_date" id="job_finish_date" max="2050-01-01" min="1950-01-02"  autocomplete="on"><br>
+                    <input type="date" name="job_finish_date" id="job_finish_date" min="1950-01-02" onchange="checkEndDate('job_finish_date', 'job_start_date')" autocomplete="on"><br>
                 </p>
                 <p>
                     <label for="workingExpDescription">
@@ -294,8 +294,8 @@
                 <a href="#" class="remove-ref">Remove Reference</a>
             </section>
         </div>
-    </div>-->
-    <a href="#" class="add-ref" data-section='0'>Add Reference</a>
+    </div>
+    <a href="#" class="add-ref" data-section='0'>Add Reference</a>-->
 
     <section>
         <p>Required fields are followed by <strong><abbr title="required">*</abbr></strong>.</p>
@@ -878,7 +878,7 @@
         });
         return false;
     });
-    var refCount = 1;
+    /*var refCount = 1;
     var refArray = [];
     $('.references .references-section').each(function(){
         refArray.push($(this).clone());
@@ -900,8 +900,36 @@
             $(this).closest('.references-section').empty();
         });
         return false;
-    });
+    });*/
 
+
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+    if(dd<10){
+            dd='0'+dd
+        } 
+        if(mm<10){
+            mm='0'+mm
+        } 
+
+    today = yyyy+'-'+mm+'-'+dd;
+    document.getElementById("join_date").setAttribute("max", today);    
+    document.getElementById("end_date").setAttribute("max", today);    
+    document.getElementById("job_start_date").setAttribute("max", today);    
+    document.getElementById("job_finish_date").setAttribute("max", today);
+
+    function checkBeginDate(IdChange, IdToChange) {
+        var x = document.getElementById(IdChange).value;
+        document.getElementById(IdToChange).setAttribute("min", x);    
+    }
+
+    function checkEndDate(IdChange, IdToChange) {
+        var x = document.getElementById(IdChange).value;
+        document.getElementById(IdToChange).setAttribute("max", x);    
+    }
+    
 </script>
 
 <!-- JavaScript Libraries -->
