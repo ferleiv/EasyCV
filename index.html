@@ -373,7 +373,7 @@
 
     <section id="resume" name="resume">
         <!--EDUCATION DESCRIPTION -->
-        <div class="container desc">
+        <div class="container desc" id="education-section">
             <div class="row" id="educacion">
 
                 <div class="col-lg-2 col-lg-offset-1">
@@ -396,7 +396,7 @@
 
 
     <!--WORK DESCRIPTION -->
-    <div class="container desc">
+    <div class="container desc" id="jobs-section">
         <div class="row" id="trabajos">
 
             <div class="col-lg-2 col-lg-offset-1">
@@ -778,6 +778,19 @@
                 var myDoughnut = new Chart(document.getElementById(skill).getContext("2d")).Doughnut(doughnutData);
             }
 
+            //Oculta las secciones sin datos
+            if (sectionsCount == 0) {
+                $("#education-section").hide();
+            }
+            if (jobCount == 0) {
+                $("#jobs-section").hide();
+            }
+            if (langCount == 0) {
+                $("#langswrap").hide();
+            }
+            if (skillscount == 0) {
+                $("#skillswrap").hide();
+            }
             //Muestra el curriculum dentro de la pagina
             $("#html11").css('display', 'block')
             return false;
