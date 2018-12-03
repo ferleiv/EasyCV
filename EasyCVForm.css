@@ -30,8 +30,12 @@ label span {
 input, textarea {
     font: 1em sans-serif;
    /* width: 250px;
-    /*box-sizing: border-box;
-    border: 1px solid #999;*/
+    box-sizing: border-box;*/
+    border: 1px solid #999;
+}
+
+input, textarea:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
 
 input:focus, textarea:focus {
@@ -51,9 +55,10 @@ fieldset {
     border: 1px solid #999;
 }
 
-#form1 label {
+#form label {
     color:darkgrey;
 }
+
 label {
   position: relative;
 }

@@ -63,6 +63,13 @@
             </label>
             <input type="email" name="email" id="email" autocomplete="on" required>
         </p>
+        <p>
+            <label for="aboutMe">
+                <span>About Me:</span>
+            </label>
+            <br>
+            <textarea id="aboutMe" name="aboutMe" rows="15" cols="42"></textarea>
+        </p>
     </section>
     <div class="duplicate-sections">
         <div class="form-section">
@@ -356,28 +363,28 @@
     <!--/.#headerwrap -->
 
 
-    <!--<section id="about" name="about">
+    <<section id="about" name="about">
         <div id="intro">
             <div class="container">
-                <div class="row">
+                <div class="row" id="aboutMe2">
 
                     <div class="col-lg-2 col-lg-offset-1">
                         <h5>ABOUT</h5>
                     </div>
-                    <div class="col-lg-6">
+                    <!--div class="col-lg-6">
                         <p>I'm web designer & front-end developer with 7 years of professional experience. I'm interested in all kinds of visual communication, but my major focus is on designing web, mobile & tablet interfaces. I also have skills in other fields like
                             branding, icon design or web development.</p>
-                    </div>
-                    <div class="col-lg-3">
+                    </div-->
+                    <!--div class="col-lg-3">
                         <p><a href="#"><i class="icon-file"></i></a>
                             <sm>DOWNLOAD PDF</sm>
                         </p>
-                    </div>
+                    </div-->
 
                 </div>
             </div>
         </div>
-    </section> -->
+    </section>
 
 
     <section id="resume" name="resume">
@@ -713,7 +720,8 @@
             var phon = document.getElementById("phone").value;
             var mail = document.getElementById("email").value;
             var months = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'];
-            var todayDate = new Date()
+            var todayDate = new Date();
+            var aboutMeInfo = document.getElementById("aboutMe").value;
             alert("Creating your brand new CV")
             //Elimina el form de la pagina principal
             $('#form1').hide()
@@ -727,6 +735,9 @@
             $("<p><t>Phone</t><br/>"+phon+"<br/></p>").appendTo("#telefono")
             //Mail
             $("<p><t>Email</t><br/>"+mail+"<br/></p>").appendTo("#telefono")
+
+            $("<div class=\"col-lg-6\"><p>"+aboutMeInfo+"</p></div>").appendTo("#aboutMe2")
+
             //Educación
             for (i = 0; i < sectionsCount; i++){
                 var title = document.getElementsByName("titlename")[i].value;
@@ -820,6 +831,7 @@
             }
             //Muestra el curriculum dentro de la pagina
             $("#html11").css('display', 'block')
+
             return false;
         })
     })
