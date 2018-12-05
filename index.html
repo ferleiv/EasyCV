@@ -46,8 +46,7 @@
                 <strong><abbr title="required">*</abbr></strong>
             </label>
             <input type="file" name="file" id="profile-img">
-            <img src="" id="profile-img-tag" width="200px" />
-
+            <img src="" id="profile-img-tag" width="200px" style="display: none;"/>
         </p>
         <p>
             <label for="phone">
@@ -347,7 +346,7 @@
     </div>
     <!--/ #section-topbar -->
 
-    <div id="headerwrap">
+    <div id="headerwrap" name="headerwrap">
         <div class="container">
             <div class="row centered">
                 <div class="col-lg-12" id="header">
@@ -693,19 +692,20 @@
 <script>
 
     function readURL(input) {
+        var x = document.getElementById("profile-img-tag");
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {
                 $('#profile-img-tag').attr('src', e.target.result);
             }
             reader.readAsDataURL(input.files[0]);
+            x.style.display = "block";
         }
     }
 
     $("#profile-img").change(function(){
 
         readURL(this);
-
     });
 
 
@@ -722,6 +722,20 @@
             var months = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'];
             var todayDate = new Date();
             var aboutMeInfo = document.getElementById("aboutMe").value;
+            
+            //Foto
+            var img = document.getElementById("profile-img"); 
+            var headerwrap = document.getElementById("headerwrap"); 
+            var imgurl = "url("+img+")";    
+            if (img.files && img.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var imgurl = "url("+e.target.result+")";
+                    headerwrap.style.background = imgurl;
+                }
+                reader.readAsDataURL(img.files[0]);
+            }
+            
             alert("Creating your brand new CV")
             //Elimina el form de la pagina principal
             $('#form1').hide()
@@ -831,7 +845,7 @@
             }
             //Muestra el curriculum dentro de la pagina
             $("#html11").css('display', 'block')
-
+            
             return false;
         })
     })
