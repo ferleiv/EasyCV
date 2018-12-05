@@ -9,7 +9,7 @@ body {
   background-color: #f2f2f2;
   font-family: "Lato";
   font-weight: 300;
-  font-size: 16px;
+  font-size: 21px;
   color: #555;
   -webkit-font-smoothing: antialiased;
   -webkit-overflow-scrolling: touch;
@@ -177,12 +177,12 @@ SECTION WRAPS
 }
 
 #headerwrap h1 {
-  font-size: 80px;
+  font-size: 90px;
   color: white;
 }
 
-#headerwrap h3 {
-  font-size: 20px;
+#headerwrap h2 {
+  font-size: 38px;
   color: white;
 }
 
@@ -195,7 +195,7 @@ SECTION WRAPS
   color: white;
 }
 
-#intro h5, p {
+#intro h3, p {
   color: white;
 }
 
@@ -213,7 +213,7 @@ SECTION WRAPS
     color: white;
 }
 
-#langswrap h5, p {
+#langswrap h3, p {
     color: #ffffff;
 }
 
@@ -224,8 +224,12 @@ SECTION WRAPS
   color: white;
 }
 
-#skillswrap h5, p {
+#skillswrap h3, p {
   color: white;
+}
+
+#skillswrap p {
+  font-size: 22px;
 }
 
 #footwrap {
@@ -236,9 +240,10 @@ SECTION WRAPS
 
 #footwrap p {
   color: white;
+  font-size: 22px;
 }
 
-#footwrap h5 {
+#footwrap h3 {
   color: white;
 }
 
@@ -263,10 +268,12 @@ SECTION WRAPS
 
 #copyrights p {
   margin: 0 0 5px 0;
+  font-size: 22px;
 }
 
 .credits {
   color: #999;
+  font-size: 22px;
 }
 
 /* Global Values */
@@ -277,10 +284,12 @@ SECTION WRAPS
 
 .desc p {
   color: #2f2f2f;
+  font-size: 22px;
 }
 
 .desc t {
   color: #34495e;
+  font-size: 22px;
   font-weight: 700;
 }
 
@@ -292,10 +301,11 @@ SECTION WRAPS
 
 .desc more {
   color: #95a5a6;
+  font-size: 22px;
 }
 
 sm {
-  font-size: 12px;
+  font-size: 18px;
 }
 
 /* Contact Form */
