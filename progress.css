@@ -59,10 +59,12 @@ progress[value]::-moz-progress-bar {
 
 p[data-value] {
     position: relative;
+    font-size: 22px;
 }
 
 p[data-value]:after {
     content: attr(data-value) '%';
     position: absolute; right:10%;
+    font-size: 22px;
 }
 
