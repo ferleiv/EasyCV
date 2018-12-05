@@ -195,8 +195,8 @@ SECTION WRAPS
   color: white;
 }
 
-#intro h3, p {
-  color: white;
+#intro p {
+  font-size: 22px;
 }
 
 #intro i {
