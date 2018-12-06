@@ -199,6 +199,10 @@ SECTION WRAPS
   font-size: 22px;
 }
 
+#intro h3 {
+  color: white;
+}
+
 #intro i {
   color: white;
   font-size: 20px;
