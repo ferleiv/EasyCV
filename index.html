@@ -816,7 +816,11 @@
                 var skill = document.getElementsByName("skill_name")[i].value;
                 var skillLevel = document.getElementsByName("skill-selector")[i];
                 var level = (skillLevel.options[skillLevel.selectedIndex].value)*20;
-                $("<div class=\"col-lg-3 centered\"><canvas id=\"" + skill + "\" height=\"130\" width=\"130\"></canvas><p>"+skill+"</p><br></div>").appendTo("#skillswrap .row")
+                var identacion = "";
+                if (i % 3 == 0 && i != 0) {
+                    identacion = " col-lg-offset-3";
+                }
+                $("<div class=\"col-lg-3" + identacion + " centered\"><canvas id=\"" + skill + "\" height=\"130\" width=\"130\"></canvas><p>"+skill+"</p><br></div>").appendTo("#skillswrap .row")
                 var doughnutData = [{
                         value: level,
                         color: "#1abc9c"
