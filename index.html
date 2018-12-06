@@ -308,8 +308,8 @@
                 <a href="#" class="remove-ref">Remove Reference</a>
             </section>
         </div>
-    </div>-->
-    <a href="#" class="add-ref" data-section='0'>Add Reference</a>
+    </div>
+    <a href="#" class="add-ref" data-section='0'>Add Reference</a>-->
 
     <section>
         <p>Required fields are followed by <strong><abbr title="required">*</abbr></strong>.</p>
@@ -848,6 +848,33 @@
             return false;
         })
     })
+    var secondCalendar = false;
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+    if(dd<10){
+        dd='0'+dd
+    } 
+    if(mm<10){
+        mm='0'+mm
+    } 
+
+    today = yyyy+'-'+mm+'-'+dd;
+    document.getElementById("join_date").setAttribute("max", today);    
+    document.getElementById("end_date").setAttribute("max", today);    
+    document.getElementById("job_start_date").setAttribute("max", today);    
+    document.getElementById("job_finish_date").setAttribute("max", today);
+
+    function checkBeginDate(IdChange, IdToChange) {
+        var x = document.getElementById(IdChange).value;
+        document.getElementById(IdToChange).setAttribute("min", x);    
+    }
+
+    function checkEndDate(IdChange, IdToChange) {
+        var x = document.getElementById(IdChange).value;
+        document.getElementById(IdToChange).setAttribute("max", x);    
+    }
     var forms = [];
     $('.duplicate-sections .form-section').each(function(){
         forms.push($(this).clone());
@@ -859,6 +886,20 @@
             var newId = this.id + sectionsCount;
             $(this).prev().attr('for', newId);
             this.id = newId;
+            if($(this).attr("type") == "date") { 
+                this.setAttribute("max", today);    
+                if(secondCalendar) {                     
+                    let currElemId = this.id;
+                    let prevElemId = $(this).parent().prev().children()[1];   
+                    $(this).on('change', function() {             
+                        checkEndDate(this.id, prevElemId.id);
+                    })     
+                    $(prevElemId).on('change', function() {             
+                        checkBeginDate(prevElemId.id, currElemId);
+                    })     
+                }
+                secondCalendar = true;                             
+            }  
         }).end()
             .appendTo($(this).prev('.duplicate-sections'));
         return false;
@@ -870,6 +911,7 @@
         });
         return false;
     });
+    secondCalendar = false;
     var jobs = [];
     $('.jobs .form-section').each(function(){
         jobs.push($(this).clone());
@@ -881,6 +923,20 @@
             var newId = this.id + jobCount;
             $(this).prev().attr('for', newId);
             this.id = newId;
+            if($(this).attr("type") == "date") { 
+                this.setAttribute("max", today);    
+                if(secondCalendar) {                     
+                    let currElemId = this.id;
+                    let prevElemId = $(this).parent().prev().children()[1];   
+                    $(this).on('change', function() {             
+                        checkEndDate(this.id, prevElemId.id);
+                    })     
+                    $(prevElemId).on('change', function() {             
+                        checkBeginDate(prevElemId.id, currElemId);
+                    })     
+                }
+                secondCalendar = true;                             
+            }     
         }).end()
             .appendTo($(this).prev('.jobs'));
         return false;
@@ -943,7 +999,7 @@
         });
         return false;
     });
-    var refCount = 1;
+    /*var refCount = 1;
     var refArray = [];
     $('.references .references-section').each(function(){
         refArray.push($(this).clone());
@@ -965,7 +1021,7 @@
             $(this).closest('.references-section').empty();
         });
         return false;
-    });
+    });*/
 
 </script>
 
