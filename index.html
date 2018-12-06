@@ -93,14 +93,14 @@
                         <span>Join Date:</span>
                         <strong><abbr title="required">*</abbr></strong>
                     </label>
-                    <input type="date" name="join_date" id="join_date" max="2018-01-01" min="1950-01-01"  autocomplete="on" required><br>
+                    <input type="date" name="join_date" id="join_date" min="1950-01-01" onchange="checkBeginDate('join_date', 'end_date')" autocomplete="on" required><br>
                 </p>
                 <p>
                     <label for="end_date">
                         <span>Graduate Date:</span>
                         <strong><abbr title="required">*</abbr></strong>
                     </label>
-                    <input type="date" name="end_date" id="end_date" max="2050-01-01" min="1950-01-02"  autocomplete="on" required><br>
+                    <input type="date" name="end_date" id="end_date" min="1950-01-02" onchange="checkEndDate('end_date', 'join_date')" autocomplete="on" required><br>
                 </p>
                 <p>
                     <label for="educationDescription">
@@ -137,14 +137,14 @@
                         <span>Start Date:</span>
                         <strong><abbr title="required">*</abbr></strong>
                     </label>
-                    <input type="date" name="job_start_date" id="job_start_date" max="2018-01-01" min="1950-01-01"  autocomplete="on" required><br>
+                    <input type="date" name="job_start_date" id="job_start_date" min="1950-01-01" onchange="checkBeginDate('job_start_date', 'job_finish_date')" autocomplete="on" required><br>
                 </p>
                 <p>
                     <label for="finish_date">
                         <span>Finish Date:</span>
                         <strong><abbr title="required">*</abbr></strong>
                     </label>
-                    <input type="date" name="job_finish_date" id="job_finish_date" max="2050-01-01" min="1950-01-02"  autocomplete="on"><br>
+                    <input type="date" name="job_finish_date" id="job_finish_date" min="1950-01-02" onchange="checkEndDate('job_finish_date', 'job_start_date')" autocomplete="on"><br>
                 </p>
                 <p>
                     <label for="workingExpDescription">
