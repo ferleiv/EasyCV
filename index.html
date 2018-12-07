@@ -729,7 +729,7 @@
             if (img.files && img.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function (e) {
-                    var imgurl = "url("+e.target.result+")";
+                    var imgurl = "url("+e.target.result+") no-repeat center top";
                     headerwrap.style.background = imgurl;
                 }
                 reader.readAsDataURL(img.files[0]);
